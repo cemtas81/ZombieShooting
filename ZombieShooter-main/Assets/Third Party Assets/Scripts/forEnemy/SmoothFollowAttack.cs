@@ -23,7 +23,8 @@ public class SmoothFollowAttack : CharacterMovement
        
         Vector3 direction = player.position - transform.position;
         float distance = direction.magnitude;
-        Rotation(targetPosition);
+        
+        Rotation(new Vector3(targetPosition.x,0,targetPosition.z));
         if (distance <= attackDistance)
         {
             
