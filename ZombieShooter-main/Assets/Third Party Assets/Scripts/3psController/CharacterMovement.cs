@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
+
 
 public class CharacterMovement : MonoBehaviour {
 
 	private Rigidbody myRigidbody;
-	
+    public float rotationSpeed = 5f;
     private CharacterAnimation playerAnimation;
     void Awake () {
 		myRigidbody = GetComponent<Rigidbody>();
@@ -16,16 +16,18 @@ public class CharacterMovement : MonoBehaviour {
 	
 		myRigidbody.MovePosition (myRigidbody.position + (speed * Time.deltaTime * direction.normalized));
 	}
-	
-	public void Rotation (Vector3 direction) 
-	{
-		// rotates the enemy towards the player
-		Quaternion newRotation = Quaternion.LookRotation(direction);
-		myRigidbody.MoveRotation (newRotation);
-	
-    }
+    public void Rotation(Vector3 direction)
+    {
+        // Determine the rotation towards the target direction
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-	public void Die() {
+        // Smoothly rotate towards the target rotation
+        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Apply the new rotation
+        myRigidbody.MoveRotation(newRotation);
+    }
+    public void Die() {
 		
 		myRigidbody.isKinematic = true;
 		GetComponent<Collider>().enabled = false;

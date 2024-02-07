@@ -16,7 +16,7 @@ public class SmoothFollowAttack : CharacterMovement
         player = FindObjectOfType<PlayerController>().gameObject.transform;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
-        aniSpeed = animator.speed;
+        //aniSpeed = animator.speed;
     }
     void FixedUpdate()
     {       

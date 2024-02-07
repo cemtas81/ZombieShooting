@@ -39,7 +39,7 @@ public class PlayerMovement : CharacterMovement {
             //    //target.position = positionPoint;
             //    positionPoint.y = 0;
             //    Rotation(positionPoint.normalized);
-               
+
             //    //Debug.DrawLine(ray.origin, hit.point, Color.red);
             //    if (hit.collider.gameObject.CompareTag("Zombie"))
             //    {
@@ -50,7 +50,8 @@ public class PlayerMovement : CharacterMovement {
             //        Cursor.SetCursor(texture2, Vector2.zero, CursorMode.Auto);
             //    }
             //}
-            Vector3 pos=target.position-transform.position;
+           
+            Vector3 pos =target.position-transform.position;
             pos.y = 0;
             Rotation(pos.normalized);
         }
