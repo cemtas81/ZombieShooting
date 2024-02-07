@@ -9,8 +9,7 @@ public class CharacterMovement : MonoBehaviour {
     void Awake () {
 		myRigidbody = GetComponent<Rigidbody>();
 		playerAnimation = GetComponent<CharacterAnimation>();
-		
-		
+				
 	} 
 	
 	public void Movement (Vector3 direction, float speed) {

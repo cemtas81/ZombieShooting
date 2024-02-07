@@ -35,14 +35,7 @@ public class EnemyHealth : MonoBehaviour
             transform.Translate (sinkSpeed * Time.deltaTime * -Vector3.up);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            attack.enabled = true;
-        }
-    }
+    
     public void TakeDamage (int amount, Vector3 hitPoint)
     {
         if(isDead)

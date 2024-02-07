@@ -30,9 +30,8 @@ public class SmoothFollowAttack : CharacterMovement
             
             Stop();
         }
-
       
-        if (distance>attackDistance)
+        else if (distance>attackDistance)
         {
            
             Move();
