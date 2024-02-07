@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2259.5508, g: 2132.7246, b: 1290.4492, a: 1}
+  m_IndirectSpecularColor: {r: 2259.5566, g: 2132.7344, b: 1290.541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8982,6 +8982,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 406372, guid: 9cf52c591d868324e9bbca3a8537087a, type: 3}
   m_PrefabInstance: {fileID: 242134912}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &244988623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244988624}
+  m_Layer: 0
+  m_Name: emptytarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &244988624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244988623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2065571104}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &249689276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38292,7 +38323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pad: {fileID: 0}
   range: 10
-  target: {x: 0, y: 0, z: 0}
+  target: {fileID: 1461229231}
   speed: 200
   turnSpeed: 10
   nextUpdate: 0
@@ -47033,7 +47064,7 @@ MonoBehaviour:
   cam: {fileID: 449965317}
   layerMask:
     serializedVersion: 2
-    m_Bits: 851
+    m_Bits: 65
 --- !u!4 &1461229231
 Transform:
   m_ObjectHideFlags: 0
@@ -68979,6 +69010,7 @@ Transform:
   - {fileID: 1964187081}
   - {fileID: 2002569230}
   - {fileID: 1461229231}
+  - {fileID: 244988624}
   m_Father: {fileID: 1106723443}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
