@@ -5,13 +5,13 @@ public class PlayerShooting : MonoBehaviour
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
-
-
+    public GameObject bulletHole;
+    public LayerMask mask;
     float timer;
     Ray shootRay = new Ray();
     RaycastHit shootHit;
     int shootableMask;
-    ParticleSystem gunParticles;
+    public ParticleSystem gunParticles;
     LineRenderer gunLine;
     AudioSource gunAudio;
     Light gunLight;
@@ -20,11 +20,11 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake ()
     {
-        shootableMask = LayerMask.GetMask ("Enemy");
-        //gunParticles = GetComponent<ParticleSystem> ();
+        //shootableMask = LayerMask.GetMask ("Enemy");
+        gunParticles = GetComponent<ParticleSystem>();
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
-        //gunLight = GetComponent<Light> ();
+        gunLight = GetComponent<Light>();
     }
 
 
@@ -48,7 +48,8 @@ public class PlayerShooting : MonoBehaviour
     public void DisableEffects ()
     {
         gunLine.enabled = false;
-        //gunLight.enabled = false;
+        gunLight.enabled = false;
+       
     }
  
     void Shoot ()
@@ -57,10 +58,10 @@ public class PlayerShooting : MonoBehaviour
 
         gunAudio.Play ();
 
-        //gunLight.enabled = true;
+        gunLight.enabled = true;
 
-        //gunParticles.Stop ();
-        //gunParticles.Play ();
+        gunParticles.Stop();
+        gunParticles.Play();
 
         gunLine.enabled = true;
         gunLine.SetPosition (0, transform.position);
@@ -68,12 +69,17 @@ public class PlayerShooting : MonoBehaviour
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
 
-        if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
+        if(Physics.Raycast (shootRay, out shootHit, range, mask))
         {
             if (shootHit.collider.TryGetComponent<EnemyHealth>(out var enemyHealth))
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
               
+            }
+            else if (shootHit.collider.CompareTag("Untagged"))
+            {
+                Instantiate(bulletHole, shootHit.point + shootHit.normal * 0.0001f, Quaternion.LookRotation(shootHit.normal));
+                bulletHole.transform.up = shootHit.normal;
             }
             gunLine.SetPosition (1, shootHit.point);
         }

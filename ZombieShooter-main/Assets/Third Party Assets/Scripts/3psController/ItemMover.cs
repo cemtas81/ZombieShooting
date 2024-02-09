@@ -5,6 +5,10 @@ public class ItemMover : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask layerMask;
     public Texture2D texture, texture2;
+    private void Start()
+    {
+        cam = Camera.main;
+    }
     void Update()
     {
         Ray ray=cam.ScreenPointToRay(Input.mousePosition);
