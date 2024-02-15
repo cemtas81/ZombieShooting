@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
     
-    public void TakeDamage (int amount, Vector3 hitPoint)
+    public void TakeDamage (int amount, Vector3 hitPoint,Quaternion rot)
     {
         if(isDead)
             return;
@@ -46,6 +46,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
 
         hitParticles.transform.position = hitPoint;
+        hitParticles.transform.rotation = rot;
         hitParticles.Play();
 
         if(currentHealth <= 0)

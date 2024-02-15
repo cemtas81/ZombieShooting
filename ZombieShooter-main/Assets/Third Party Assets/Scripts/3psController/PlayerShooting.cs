@@ -73,12 +73,12 @@ public class PlayerShooting : MonoBehaviour
         {
             if (shootHit.collider.TryGetComponent<EnemyHealth>(out var enemyHealth))
             {
-                enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+                enemyHealth.TakeDamage(damagePerShot, shootHit.point , Quaternion.LookRotation(shootHit.normal));
               
             }
             else if (shootHit.collider.CompareTag("Untagged"))
             {
-                Instantiate(bulletHole, shootHit.point + shootHit.normal * 0.0001f, Quaternion.LookRotation(shootHit.normal));
+                Instantiate(bulletHole, shootHit.point , Quaternion.LookRotation(shootHit.normal));
                 bulletHole.transform.up = shootHit.normal;
             }
             gunLine.SetPosition (1, shootHit.point);
