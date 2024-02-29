@@ -26,8 +26,18 @@ public class PlayerShooting : MonoBehaviour
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light>();
     }
-
-
+    private void OnEnable()
+    {
+        EventManager.Onclicked+=Cover;
+    }
+    private void OnDisable()
+    {
+        EventManager.Onclicked -= Cover;
+    }
+    void Cover()
+    {
+        Debug.Log("covered");
+    }
     void Update ()
     {
         timer += Time.deltaTime;

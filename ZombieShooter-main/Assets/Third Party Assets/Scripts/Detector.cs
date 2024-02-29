@@ -13,6 +13,7 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             attack.enabled = true;
+            attack.searching=false;
         }
     }
 }
