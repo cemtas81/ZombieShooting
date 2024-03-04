@@ -6,16 +6,24 @@ public class CharacterMovement : MonoBehaviour {
 	private Rigidbody myRigidbody;
     public float rotationSpeed = 5f;
     private CharacterAnimation playerAnimation;
+    private Camera cam;
+    Vector3 movement;
     void Awake () {
 		myRigidbody = GetComponent<Rigidbody>();
 		playerAnimation = GetComponent<CharacterAnimation>();
-				
+        cam = Camera.main;	
 	} 
 	
-	public void Movement (Vector3 direction, float speed) {
-	
-		myRigidbody.MovePosition (myRigidbody.position + (speed * Time.deltaTime * direction.normalized));
-	}
+	public void Movement (Vector3 direction, float speed) 
+    {
+        movement.Set(direction.x,0,direction.z);
+        movement = cam.transform.TransformDirection(movement);
+        movement = speed * Time.deltaTime * direction.normalized;
+        myRigidbody.MovePosition(myRigidbody.position+movement);
+
+        //myRigidbody.MovePosition (myRigidbody.position + (speed * Time.deltaTime * direction.normalized));
+        
+    }
     public void Rotation(Vector3 direction)
     {
         // Determine the rotation towards the target direction

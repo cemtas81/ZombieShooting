@@ -16,7 +16,7 @@ public class PlayerShooting : MonoBehaviour
     AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
-
+    public Animator ani;
 
     void Awake ()
     {
@@ -37,6 +37,7 @@ public class PlayerShooting : MonoBehaviour
     void Cover()
     {
         Debug.Log("covered");
+        ani.SetBool("Cover", true);
     }
     void Update ()
     {

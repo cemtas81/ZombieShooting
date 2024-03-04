@@ -14,13 +14,7 @@ public class PlayerMovement : CharacterMovement {
     private Camera m_camera;
     public Transform aim;
     public Texture2D texture,texture2;
-    private void Start()
-    {
-  
-        m_camera = Camera.main; 
-
-    }
-
+   
     public void PlayerRotation(LayerMask groundMask)
     {
 
