@@ -16,8 +16,8 @@ public class PlayerShooting : MonoBehaviour
     AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
-    public Animator ani;
 
+  
     void Awake ()
     {
         //shootableMask = LayerMask.GetMask ("Enemy");
@@ -26,19 +26,7 @@ public class PlayerShooting : MonoBehaviour
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light>();
     }
-    private void OnEnable()
-    {
-        EventManager.Onclicked+=Cover;
-    }
-    private void OnDisable()
-    {
-        EventManager.Onclicked -= Cover;
-    }
-    void Cover()
-    {
-        Debug.Log("covered");
-        ani.SetBool("Cover", true);
-    }
+   
     void Update ()
     {
         timer += Time.deltaTime;

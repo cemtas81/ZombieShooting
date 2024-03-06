@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text;
+using UnityEngine;
 
 
 public class CharacterMovement : MonoBehaviour {
@@ -8,13 +9,14 @@ public class CharacterMovement : MonoBehaviour {
     private CharacterAnimation playerAnimation;
     private Camera cam;
     Vector3 movement;
+    private bool covered;
     void Awake () {
 		myRigidbody = GetComponent<Rigidbody>();
 		playerAnimation = GetComponent<CharacterAnimation>();
         cam = Camera.main;	
-	} 
-	
-	public void Movement (Vector3 direction, float speed) 
+	}
+ 
+    public void Movement (Vector3 direction, float speed) 
     {
         movement.Set(direction.x,0,direction.z);
         movement = cam.transform.TransformDirection(movement);

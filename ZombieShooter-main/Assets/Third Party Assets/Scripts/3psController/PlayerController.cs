@@ -40,13 +40,17 @@ public class PlayerController : MonoBehaviour{
 	{
 		myController1.Enable();
 		action1 = myController1.MyGameplay.MoveCursor;
-		//playerAnimation.Boom();
+        //playerAnimation.Boom();
+        EventManager.Onclicked += Cover;
+        EventManager.OnUp += UnCover;
     }
 	private void OnDisable()
 	{
 		myController1.Disable();
-       
-    } 
+        EventManager.Onclicked -= Cover;
+        EventManager.OnUp -= UnCover;
+    }
+ 
     void Update () 
     {
 
@@ -67,15 +71,7 @@ public class PlayerController : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //screenController.Pause();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-			Cover();
-        }
-		if (Input.GetButtonUp("Fire2"))
-        {
-			UnCover();
-        }
+        }     
         Vector2 moving=action1.ReadValue<Vector2>();
       
         float xAxis = moving.x;
@@ -104,22 +100,22 @@ public class PlayerController : MonoBehaviour{
         playerAnimation.Movement(direction.magnitude);
 
     }
-   
-    void Cover()
-    {
-		if (!covering&&canCover)
-		{
-            playerAnimation.Cover(true);
-            //bodyAim.enabled = false;
-           
-            bodyAim.weight = .35f;
-            covering = true;
-        }
-	
-    }
 
-    void UnCover()
-    {
+	void Cover()
+	{
+		if (!covering && canCover)
+		{
+			playerAnimation.Cover(true);
+			//bodyAim.enabled = false;
+
+			bodyAim.weight = 0;
+			covering = true;
+		}
+
+	}
+
+	void UnCover()
+	{
 		if (covering)
 		{
 			StartCoroutine(UnCovering());
@@ -127,7 +123,7 @@ public class PlayerController : MonoBehaviour{
 		}
 
 	}
-    IEnumerator UnCovering()
+	IEnumerator UnCovering()
 	{
         playerAnimation.Cover(false);
         yield return new WaitForSeconds(1.3f);
@@ -175,7 +171,7 @@ public class PlayerController : MonoBehaviour{
 		if (other.CompareTag("Cover"))
 		{
 			canCover = true;
-			direction = other.transform.forward;
+			direction = other.transform.forward*-1;
 		}
 	}
 	private void OnTriggerExit(Collider other)

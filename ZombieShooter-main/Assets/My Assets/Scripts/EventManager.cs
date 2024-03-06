@@ -8,6 +8,7 @@ public class EventManager : MonoBehaviour
     public delegate void ClickAction();
     public static EventManager Instance { get; private set; }
     public static event ClickAction Onclicked;
+    public static event ClickAction OnUp;
     public Button cover;
     private void Awake()
     {
@@ -23,9 +24,13 @@ public class EventManager : MonoBehaviour
   
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Onclicked();
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnUp();
         }
     }
 

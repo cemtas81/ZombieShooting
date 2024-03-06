@@ -60,13 +60,14 @@ public class SmoothFollowAttack : CharacterMovement
         {
             Search();
         }
-       
+
     }
     void Search()
     {
-        
-        targetPosition = transform.position + transform.forward;
-        Movement(targetPosition, searchSpeed);
+
+        Vector3 direction = transform.position-player.position;
+ 
+        Rotation(new Vector3(direction.x, 0, direction.z));
     }
     void Move()
     {
